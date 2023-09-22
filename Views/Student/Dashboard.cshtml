@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="~/Content/Home.css" />
+    <link rel="stylesheet" href="~/Content/Dashboard.css" />
+    <link rel="stylesheet" href="~/Content/StudentDashboard.css" />
+
+    <style>
+        /* Style the dropdown container */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+            /* Style the "Courses" link */
+            .dropdown .box {
+                text-decoration: none;
+                color: #333;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                background-color: #f9f9f9;
+                cursor: pointer;
+            }
+
+        /* Style the dropdown content */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            /* Style the course links */
+            .dropdown-content a {
+                color: #333;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                /* Change the color of course links on hover */
+                .dropdown-content a:hover {
+                    background-color: #f2f2f2;
+                }
+
+        /* Show the dropdown content when hovering over the "Courses" link */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Optionally, you can style the arrow ▼ */
+        .dropdown .box::after {
+            content: '\25BC'; /* Unicode character for ▼ */
+            margin-left: 5px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="box-container">
+
+        <a href="@Url.Action("StudentProfile", "Student")" class="box">
+            <h2>Courses</h2>
+        </a>
+    </div>
+
+    <div class="box-container">
+        <div class="dropdown">
+            <a href="#" class="box">
+                <!-- Make sure to use # as the href so it doesn't navigate -->
+                <h2>Courses &#9660;</h2> <!-- &#9660; is the Unicode character for a downward-pointing triangle (▼) -->
+            </a>
+            <div class="dropdown-content">
+                <!-- Dropdown content goes here -->
+                <a href="#">Course 1</a>
+                <a href="#">Course 2</a>
+                <a href="#">Course 3</a>
+                <!-- Add more course links as needed -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>

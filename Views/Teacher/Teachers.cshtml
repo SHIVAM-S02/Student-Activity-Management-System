@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Student_Activity_Management_System.Models.User>
+
+@{
+    ViewBag.Title = "Teachers";
+}
+
+<h2>Teachers</h2>
+
+<p>
+    @Html.ActionLink("Create Teacher", "CreateTeacher", "Teacher")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        @* <th>
+                @Html.DisplayNameFor(model => model.Role_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role_Name)
+            </th>
+            <th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.First_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            @* <td>
+                    @Html.DisplayFor(modelItem => item.Role_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role_Name)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit Teacher", "EditTeacher", "Teacher", new { id = item.User_ID }, null)
+                @Html.ActionLink("Details", "Details", new { id = item.User_ID }) |
+                @Html.ActionLink("Delete", "DeleteTeacher", new { id = item.User_ID }, new { onclick = "return confirm('Are you sure you want to delete this admin?');" })
+            </td>
+        </tr>
+    }
+
+</table>

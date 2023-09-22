@@ -1,0 +1,57 @@
+﻿.box-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    border: 0px solid #ccc;
+    padding: 20px;
+    width: 300px;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin: 5px;
+}
+
+    .box h2 {
+        margin-top: 10px;
+        color: #007bff;
+    }
+
+    .box:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+
+/*****************Admins.cshtml********************/
+
+/* Style for the table header */
+.table th {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Style for table cells */
+.table td {
+    text-align: center;
+    padding: 8px;
+}
+
+/* Style for alternating rows */
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style for action links */
+.table td a {
+    margin-right: 5px;
+}

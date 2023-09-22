@@ -1,0 +1,116 @@
+﻿@model Student_Activity_Management_System.Models.User
+
+@{
+    ViewBag.Title = "Sign Up";
+    Layout = null;
+}
+
+<style>
+    /* Form container */
+    .signup-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 0.5s ease;
+    }
+
+    /* Input fields */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        transition: border-color 0.2s ease-in-out;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+    }
+
+    /* Submit button */
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Validation messages */
+    .text-danger {
+        color: #dc3545;
+    }
+
+  @*  /* Fade-in animation */
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }*@
+</style>
+
+<div class="signup-container">
+    @using (Html.BeginForm("SignUp", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.First_Name, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.First_Name)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Last_Name, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Last_Name)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Gender, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Gender, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Gender)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Batch_Name, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Batch_Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Batch_Name)
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+    }
+</div>

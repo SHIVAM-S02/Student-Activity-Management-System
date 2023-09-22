@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/Style Sheet/Home.css" />
+    <link rel="stylesheet" href="~/Content/Style Sheet/Dashboard.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+
+
+</head>
+<body>
+    @*<div class="nav">
+            <ol>
+                <li><h3>Don Bosco Institute Of Technology</h3></li>
+                <li><h4>+123234234</h4></li>
+            </ol>
+
+        </div>*@
+    <header>
+        <a href="@Url.Action("Home", "Home")">
+            <div class="logo-container">
+                <img src="~/Content/Images/LOGO.png" alt="Company Logo" />
+            </div>
+        </a>
+        <input type="checkbox" name="" class="btn" />
+        <div class="nav">
+            <ol>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var userRole = Session["UserRole"]?.ToString(); // Get user role from session
+                    if (userRole == "Admin")
+                    {
+                        <li><a href="@Url.Action("Dashboard", "Admin")">@*Admin*@ Dashboard</a></li>
+                    }
+                    else if (userRole == "Student")
+                    {
+                        <li><a href="@Url.Action("Dashboard", "Student")">@*Student*@ Dashboard</a></li>
+                    }
+                    else if (userRole == "Teacher")
+                    {
+                        <li><a href="@Url.Action("Dashboard", "Teacher")">@*Teacher*@ Dashboard</a></li>
+                    }
+
+                    <li><a href="@Url.Action("About", "Home")">About</a></li>
+                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                    <li><a href="@Url.Action("Notice", "Home")">Notice</a></li>
+                    <li><a href="@Url.Action("StudentProfile", "Student")">Profile</a></li>
+                    <li><a href="@Url.Action("Logout", "Account")">Logout</a></li>
+
+                }
+                else
+                {
+                    <li><a href="@Url.Action("Signup", "Account")">Signup</a></li>
+                    <li><a href="@Url.Action("Login", "Account")">Login</a></li>
+                }
+
+
+            </ol>
+        </div>
+    </header>
+
+    <div class="container body-content">
+        <!-- Sidebar Menu for Student -->
+        @if (User.Identity.IsAuthenticated && Session["UserRole"]?.ToString() == "Student")
+        {
+
+        }
+
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@model Student_Activity_Management_System.Models.User
+
+
+@{
+    ViewBag.Title = "StudentProfile";
+
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Profile</title>
+</head>
+<body>
+    <h1>Student Profile</h1>
+    <p><strong>User ID:</strong> @Model.User_ID</p>
+    <p><strong>First Name:</strong> @Model.First_Name</p>
+    <p><strong>Last Name:</strong> @Model.Last_Name</p>
+    <p><strong>Gender:</strong> @Model.Gender</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Batch Name:</strong> @Model.Batch_Name</p>
+
+    <!-- You can add more fields as needed -->
+
+    <a href="@Url.Action("Index", "Home")">Back to Home</a>
+</body>
+</html>
