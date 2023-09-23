@@ -8,7 +8,6 @@ namespace Student_Activity_Management_System.Controllers
 {
     public class HomeController : Controller
     {
-       
         public ActionResult Home()
         {
             return View();
