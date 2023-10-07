@@ -359,53 +359,10 @@ namespace Student_Activity_Management_System.Controllers
             return null; // Return null if the profile is not found or an error occurs
         }
 
-
-        /*public ActionResult StudentProfile(int id)
+        public ActionResult AcademicData()
         {
-            // Create a list to hold the student profile
-            List<User> studentProfile = new List<User>();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                // Create a command to call the stored procedure
-                using (SqlCommand cmd = new SqlCommand("GetStudentProfile", connection))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    // Add the parameter for the student's User_ID
-                    cmd.Parameters.AddWithValue("@User_ID", id);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            // Create a Student object and populate it with data from the reader
-                            User student = new User
-                            {
-                                User_ID = reader.GetInt32(reader.GetOrdinal("User_ID")),
-                                First_Name = reader.GetString(reader.GetOrdinal("First_Name")),
-                                Last_Name = reader.GetString(reader.GetOrdinal("Last_Name")),
-                                Gender = reader.GetString(reader.GetOrdinal("Gender")),
-                                Email = reader.GetString(reader.GetOrdinal("Email")),
-                                Password = reader.GetString(reader.GetOrdinal("Password"))
-                            };
-
-                            studentProfile.Add(student);
-                        }
-                    }
-                }
-            }
-
-            // Check if any student profiles were found
-            if (studentProfile.Count == 0)
-            {
-                return HttpNotFound(); // Handle the case where the student is not found
-            }
-
-            return View(studentProfile.First()); // Pass the first student profile to the "Profile" view
-        }*/
+            return View();
+        }
 
     }
 }

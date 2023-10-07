@@ -13,6 +13,7 @@ namespace Student_Activity_Management_System.Models
 
         public int File_ID { get; set; }
         public string FileName { get; set; }
+        public int Marks { get; set; }
         public byte[] FileData { get; set; }
         public int User_ID { get; set; }
     }

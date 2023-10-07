@@ -41,10 +41,15 @@
     @Html.AntiForgeryToken()
 
     <div class="form-group">
-        @* Corrected the label and input for FileName *@
         @Html.Label("File Name")
         @Html.TextBox("FileName", null, new { type = "text" })
         @Html.ValidationMessage("FileName")
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Marks")
+        @Html.TextBox("Marks", null, new { type = "text" })
+        @Html.ValidationMessage("Marks")
     </div>
 
     <div class="form-group">

@@ -219,4 +219,52 @@ public class PdfController : Controller
 
 
 
+    public ActionResult DeletePdf(int id)
+    {
+        // Implement logic to delete the PDF file from your database
+        if (DeletePdfFileById(id))
+        {
+            // Redirect to the PDF list page after successful deletion
+            return RedirectToAction("PdfList");
+        }
+        else
+        {
+            // Handle the case where deletion fails, e.g., show an error message
+            TempData["ErrorMessage"] = "Failed to delete the PDF file.";
+            return RedirectToAction("PdfList");
+        }
+    }
+
+    private bool DeletePdfFileById(int id)
+    {
+        try
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Construct the SQL query to delete the PDF file by ID
+                string sql = "DELETE FROM PDFFile WHERE File_ID = @Id";
+
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    // Execute the SQL command to delete the file
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    // Check if the deletion was successful (rowsAffected > 0)
+                    return rowsAffected > 0;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions appropriately
+            return false; // Deletion failed
+        }
+    }
+
+
+
 }
