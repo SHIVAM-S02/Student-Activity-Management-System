@@ -14,5 +14,8 @@ namespace Student_Activity_Management_System
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
+
     }
+
 }

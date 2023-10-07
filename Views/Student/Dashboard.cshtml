@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="~/Content/StudentDashboard.css" />
 
     <style>
+
+        /*h3 {
+            color: #007bff;
+        }*/
         /* Style the dropdown container */
         .dropdown {
             position: relative;
@@ -69,25 +73,33 @@
     <div class="box-container">
 
         <a href="@Url.Action("StudentProfile", "Student")" class="box">
-            <h2>Courses</h2>
+            <h2>Cources</h2>
         </a>
+
+        <a href="@Url.Action("Upload", "pdf")" class="box">
+            <h3>Academic Performance</h3>
+        </a>
+        <a href="@Url.Action("Upload", "pdf")" class="box">
+            <h3>Non-Academic Performance</h3>
+        </a>
+
     </div>
 
-    <div class="box-container">
+    <!--<div class="box-container">
         <div class="dropdown">
-            <a href="#" class="box">
+            <a href="#" class="box">-->
                 <!-- Make sure to use # as the href so it doesn't navigate -->
-                <h2>Courses &#9660;</h2> <!-- &#9660; is the Unicode character for a downward-pointing triangle (▼) -->
-            </a>
-            <div class="dropdown-content">
+                <!--<h2>Courses &#9660;</h2>--> <!-- &#9660; is the Unicode character for a downward-pointing triangle (▼) -->
+            <!--</a>
+            <div class="dropdown-content">-->
                 <!-- Dropdown content goes here -->
-                <a href="#">Course 1</a>
+                <!--<a href="#">Course 1</a>
                 <a href="#">Course 2</a>
-                <a href="#">Course 3</a>
+                <a href="#">Course 3</a>-->
                 <!-- Add more course links as needed -->
-            </div>
+            <!--</div>
         </div>
-    </div>
+    </div>-->
 
 
 

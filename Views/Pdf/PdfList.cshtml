@@ -1,0 +1,37 @@
+﻿@model List<Student_Activity_Management_System.Models.PdfFile>
+@{
+    ViewBag.Title = "PDF List";
+}
+
+<h2>List of PDF Files</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pdfFile in Model)
+            {
+                <tr>
+                    <td>@pdfFile.FileName</td>
+                    <td>
+                        <a href="@Url.Action("DownloadPdf", "Pdf", new { id = pdfFile.File_ID })">Download</a>
+                        <a href="@Url.Action("ViewPdf", "Pdf", new { id = pdfFile.File_ID })">View</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No PDF files available.</p>
+}
+
+@* Add links to other pages or actions as needed *@

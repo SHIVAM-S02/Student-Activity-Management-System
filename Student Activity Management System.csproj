@@ -101,6 +101,7 @@
     <Content Include="Content\Script\Slider.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Style Sheet\Dashboard.css" />
+    <Content Include="Content\Style Sheet\Demo.css" />
     <Content Include="Content\Style Sheet\Home.css" />
     <Content Include="Content\Style Sheet\Student.css" />
     <Content Include="Content\Style Sheet\StudentDashboard.css" />
@@ -112,11 +113,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PdfController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PfdFile.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -146,6 +149,8 @@
     <Content Include="Views\Student\CreateStudent.cshtml" />
     <Content Include="Views\Student\EditStudent.cshtml" />
     <Content Include="Views\Student\StudentProfile.cshtml" />
+    <Content Include="Views\Pdf\Upload.cshtml" />
+    <Content Include="Views\Pdf\PdfList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -155,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\PDFs\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

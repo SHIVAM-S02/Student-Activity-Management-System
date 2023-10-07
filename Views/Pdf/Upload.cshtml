@@ -1,0 +1,73 @@
+﻿@model List<Student_Activity_Management_System.Models.PdfFile>
+
+@{
+    ViewBag.Title = "Upload";
+}
+
+<style>
+    /* Apply styles to the container */
+    .container {
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
+
+    /* Apply styles to the Upload heading */
+    h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Apply styles to the file input and submit button */
+    input[type="file"] {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+<h2>Upload PDF File</h2>
+
+@using (Html.BeginForm("Upload", "Pdf", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @* Corrected the label and input for FileName *@
+        @Html.Label("File Name")
+        @Html.TextBox("FileName", null, new { type = "text" })
+        @Html.ValidationMessage("FileName")
+    </div>
+
+    <div class="form-group">
+        <label for="file">Select PDF File</label>
+        <input type="file" name="file" id="file" accept=".pdf" required />
+    </div>
+
+    <input type="submit" value="Upload" class="btn btn-primary" />
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    <ul>
+        @foreach (var pdfFile in Model)
+        {
+            <li>
+                <!-- Render PDF file details -->
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No PDF files available.</p>
+}
+
