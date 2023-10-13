@@ -10,57 +10,13 @@
     <link rel="stylesheet" href="~/Content/Home.css" />
     <link rel="stylesheet" href="~/Content/Dashboard.css" />
     <link rel="stylesheet" href="~/Content/StudentDashboard.css" />
+    <link rel="stylesheet" href="~/Content/Style Sheet/Demo.css" />
     <style>
         /*h3 {
             color: #007bff;
         }*/
     </style>
 </head>
-<body>
-    <div class="box-container">
-        <a href="@Url.Action("Upload", "Pdf")" class="box">
-            <h2>Add Academic</h2>
-        </a>
-
-    </div>
-
-</body>
-</html>
-
-<h2>List of PDF Files</h2>
-
-@if (Model != null && Model.Count > 0)
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>File Name</th>
-                <th>Marks</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var pdfFile in Model)
-            {
-                <tr>
-                    <td>@pdfFile.FileName</td>
-                    <td>
-                        <a href="@Url.Action("DownloadPdf", "Pdf", new { id = pdfFile.File_ID })">Download</a>
-                        <a href="@Url.Action("ViewPdf", "Pdf", new { id = pdfFile.File_ID })">View</a>
-                        <a href="@Url.Action("DeletePdf", "Pdf", new { id = pdfFile.File_ID })" onclick="return confirm('Are you sure you want to delete this file?')">Delete</a>
-                    </td>
-                </tr>
-            }
-
-        </tbody>
-    </table>
-}
-else
-{
-    <p>No PDF files available.</p>
-}
-
-@*8888888888888888888888888888*@
 
 <!DOCTYPE html>
 <html>
@@ -194,3 +150,57 @@ else
 
 </body>
 </html>
+
+
+<body>
+    <div class="box-container">
+        <a href="@Url.Action("Upload", "Pdf")" class="box">
+            <h2>Add Academic</h2>
+        </a>
+
+    </div>
+
+</body>
+</html>
+
+
+
+<h2>List of PDF Files</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Degree</th>
+                <th>Board</th>
+                <th>Percentage</th>
+                <th>Year_of_Passing</th>
+                <th>Actions</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var pdfFile in Model)
+            {
+                <tr>
+                    <th>@pdfFile.Degree</th>
+                    <th>@pdfFile.Board</th>
+                    <th>@pdfFile.Percentage</th>
+                    <th>@pdfFile.Year_of_Passing</th>
+                    @*<th>Actions</th>*@
+                    <td>
+                        <a href="@Url.Action("DownloadPdf", "Pdf", new { id = pdfFile.File_ID })">Download</a>
+                        <a href="@Url.Action("ViewPdf", "Pdf", new { id = pdfFile.File_ID })">View</a>
+                        <a href="@Url.Action("DeletePdf", "Pdf", new { id = pdfFile.File_ID })" onclick="return confirm('Are you sure you want to delete this file?')">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No PDF files available.</p>
+}

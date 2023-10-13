@@ -167,4 +167,38 @@ header {
         object-fit: cover;
     }
 
-/**********************************/
+/****************Notice******************/
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.notice-container {
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+}
+
+.notice {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    animation: slideNotice 5s linear infinite;
+    transition: left 1s; /* Add a transition effect for smooth sliding */
+}
+
+@keyframes slideNotice {
+    0% {
+        left: 100%;
+    }
+
+    100% {
+        left: -100%;
+    }
+}
+

@@ -26,7 +26,7 @@ public class PdfController : Controller
     }
 
     [HttpPost]
-    public ActionResult Upload(HttpPostedFileBase file)
+    public ActionResult Upload(HttpPostedFileBase file, string degree, string board, double percentage, string yearOfPassing = "0")
     {
         if (Session["UserRole"]?.ToString() == "Student" && file != null && file.ContentLength > 0)
         {
@@ -39,14 +39,16 @@ public class PdfController : Controller
             var pdfFile = new PdfFile
             {
                 FileName = file.FileName,
-                FileData = fileData
+                FileData = fileData,
+                Degree = degree,
+                Board = board,
+                Percentage = percentage,
+                Year_of_Passing = yearOfPassing.ToString() // Convert yearOfPassing to string
             };
 
-            
-            int userId = Convert.ToInt32(Session["UserId"]); // Updated session variable name
+            int userId = Convert.ToInt32(Session["UserId"]);
 
-            // Call the UploadPDFFile stored procedure to upload the PDF file.
-            if (UploadPDFFile(pdfFile.FileName, pdfFile.FileData, userId))
+            if (UploadPDFFile(pdfFile.FileName, fileData, userId, degree, board, percentage, yearOfPassing))
             {
                 return RedirectToAction("PdfList");
             }
@@ -57,14 +59,13 @@ public class PdfController : Controller
         }
         else
         {
-            // Handle unauthorized access or invalid file upload for non-student users.
             return RedirectToAction("Login", "Account");
         }
 
         return View();
     }
 
-    private bool UploadPDFFile(string fileName, byte[] fileData, int userId)
+    private bool UploadPDFFile(string fileName, byte[] fileData, int userId, string degree, string board, double percentage, string yearOfPassing = "0")
     {
         try
         {
@@ -79,6 +80,10 @@ public class PdfController : Controller
                     command.Parameters.AddWithValue("@FileName", fileName);
                     command.Parameters.AddWithValue("@FileData", fileData);
                     command.Parameters.AddWithValue("@User_ID", userId);
+                    command.Parameters.AddWithValue("@Degree", degree); // Add the 'Degree' parameter
+                    command.Parameters.AddWithValue("@Board", board); // Add the 'Board' parameter
+                    command.Parameters.AddWithValue("@Percentage", percentage); // Add the 'Percentage' parameter
+                    command.Parameters.AddWithValue("@Year_of_Passing", yearOfPassing); // Add the 'Year_of_Passing' parameter
 
                     command.ExecuteNonQuery();
 
@@ -93,7 +98,15 @@ public class PdfController : Controller
         }
     }
 
-    public ActionResult PdfList()
+    // Rest of your code for PdfList, ViewPdf, DownloadPdf, and GetPdfFileById remains unchanged
+
+    // ...
+
+
+
+
+
+public ActionResult PdfList()
     {
         // Fetch the list of PDF files from your database or repository
         List<PdfFile> pdfFiles = GetPDFFilesFromDatabase();
@@ -124,7 +137,13 @@ public class PdfController : Controller
                             {
                                 File_ID = (int)reader["File_ID"],
                                 FileName = reader["FileName"].ToString(),
-                                FileData = (byte[])reader["FileData"]
+                                FileData = (byte[])reader["FileData"],
+                                Degree = reader["Degree"].ToString(),
+                                Board = reader["Board"].ToString()
+                                /*Percentage = reader.IsDBNull(reader.GetOrdinal("Percentage")) ? 0.0 : (double)reader["Percentage"],
+                                Year_of_Passing = reader["Year_of_Passing"].ToString()*/
+                               
+
                             };
                             pdfFiles.Add(pdfFile);
                         }
@@ -187,7 +206,7 @@ public class PdfController : Controller
                 connection.Open();
 
                 // Construct the SQL query to retrieve the PDF file by ID
-                string sql = "SELECT File_ID, FileName, FileData, User_ID FROM PDFFile WHERE File_ID = @Id";
+                string sql = "SELECT File_ID, FileName, FileData, Degree, Board FROM PDFFile WHERE File_ID = @Id";
 
                 using (var command = new SqlCommand(sql, connection))
                 {
@@ -202,7 +221,10 @@ public class PdfController : Controller
                                 File_ID = (int)reader["File_ID"],
                                 FileName = reader["FileName"].ToString(),
                                 FileData = (byte[])reader["FileData"],
-                                User_ID = (int)reader["User_ID"]
+                                Degree = reader["Degree"].ToString(),
+                                Board = reader["Board"].ToString()
+                               /* Percentage = (double)reader["Percentage"],
+                                Year_of_Passing = reader["Year_of_Passing"].ToString()*/
                             };
                         }
                     }
@@ -217,53 +239,13 @@ public class PdfController : Controller
         return null; // Return null if the PDF file is not found or an error occurs
     }
 
-
-
-    public ActionResult DeletePdf(int id)
+    public ActionResult Non_Academic()
     {
-        // Implement logic to delete the PDF file from your database
-        if (DeletePdfFileById(id))
-        {
-            // Redirect to the PDF list page after successful deletion
-            return RedirectToAction("PdfList");
-        }
-        else
-        {
-            // Handle the case where deletion fails, e.g., show an error message
-            TempData["ErrorMessage"] = "Failed to delete the PDF file.";
-            return RedirectToAction("PdfList");
-        }
+        return View();
     }
 
-    private bool DeletePdfFileById(int id)
-    {
-        try
-        {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
 
-                // Construct the SQL query to delete the PDF file by ID
-                string sql = "DELETE FROM PDFFile WHERE File_ID = @Id";
 
-                using (var command = new SqlCommand(sql, connection))
-                {
-                    command.Parameters.AddWithValue("@Id", id);
-
-                    // Execute the SQL command to delete the file
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    // Check if the deletion was successful (rowsAffected > 0)
-                    return rowsAffected > 0;
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            // Handle exceptions appropriately
-            return false; // Deletion failed
-        }
-    }
 
 
 

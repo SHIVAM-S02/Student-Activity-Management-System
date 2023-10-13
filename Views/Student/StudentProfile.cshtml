@@ -1,6 +1,7 @@
 ﻿@model Student_Activity_Management_System.Models.User
 
 
+
 @{
     ViewBag.Title = "StudentProfile";
 
@@ -15,13 +16,6 @@
 
 </head>
 <body>
-    <h1>Student Profile</h1>
-    <p><strong>User ID:</strong> @Model.User_ID</p>
-    <p><strong>First Name:</strong> @Model.First_Name</p>
-    <p><strong>Last Name:</strong> @Model.Last_Name</p>
-    <p><strong>Gender:</strong> @Model.Gender</p>
-    <p><strong>Email:</strong> @Model.Email</p>
-    <p><strong>Batch Name:</strong> @Model.Batch_Name</p>
 
 
     <!-- Student Profile -->
@@ -32,32 +26,39 @@
                     <div class="card shadow-sm">
                         <div class="card-header bg-transparent text-center">
                             <img class="profile_img" src="~/Content/Images/LOGO.png" alt="">
-                            <p class="mb-0"><strong class="pr-1">NAME:</strong>@Model.First_Name + @Model.Last_Name</p>
-                            <h3>Ishmam Ahasan Samin</h3>
                         </div>
-                        <div class="card-body">
-                            <p class="mb-0"><strong class="pr-1">Student ID:</strong>@Model.User_ID</p>
-                            <p class="mb-0"><strong class="pr-1">Gender:</strong>@Model.Gender</p>
-                            <p class="mb-0"><strong class="pr-1">Email:</strong>@Model.Email</p>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="card shadow-sm">
-                        <div class="card-header bg-transparent border-0">
-                            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
-                        </div>
                         <div class="card-body pt-0">
                             <table class="table table-bordered">
                                 <tr>
-                                    <th width="30%">Roll</th>
+                                    <th width="30%">First_Name</th>
+                                    <td width="2%">:</td>
+                                    <td>@Model.First_Name</td>
+                                </tr>
+                                <tr>
+                                    <th width="30%">Last_Name</th>
                                     <td width="2%">:</td>
                                     <td>@Model.Last_Name</td>
                                 </tr>
                                 <tr>
-                                    <th width="30%">Academic Year	</th>
+                                    <th width="30%">Gender</th>
                                     <td width="2%">:</td>
-                                    <td>2020</td>
+                                    <td>@Model.Gender</td>
+                                </tr>
+                                <tr>
+                                    <th width="30%">Email</th>
+                                    <td width="2%">:</td>
+                                    <td>@Model.Email</td>
+                                </tr>
+
+                                <tr>
+                                    <th width="30%">Batch_Name</th>
+                                    <td width="2%">:</td>
+                                    <td>2024</td>
                                 </tr>
                                 <tr>
                                     <th width="30%">Gender</th>
@@ -65,14 +66,29 @@
                                     <td>Male</td>
                                 </tr>
                                 <tr>
-                                    <th width="30%">Religion</th>
+                                    <th width="30%">User_ID</th>
                                     <td width="2%">:</td>
-                                    <td>Group</td>
+                                    <td>@Model.User_ID</td>
                                 </tr>
                                 <tr>
                                     <th width="30%">blood</th>
                                     <td width="2%">:</td>
                                     <td>B+</td>
+                                </tr>
+                                <tr>
+                                    <th width="30%">Aadhar No.</th>
+                                    <td width="2%">:</td>
+                                    <td>345348645376</td>
+                                </tr>
+                                <tr>
+                                    <th width="30%">Address</th>
+                                    <td width="2%">:</td>
+                                    <td>Panvel</td>
+                                </tr>
+                                <tr>
+                                    <th width="30%">Mobile No.</th>
+                                    <td width="2%">:</td>
+                                    <td>23576354856</td>
                                 </tr>
                             </table>
                         </div>
@@ -82,6 +98,12 @@
         </div>
     </div>
 
+
+    <tr>
+        <td>
+            @Html.ActionLink("Edit Student", "EditStudent", "Student")
+        </td>
+    </tr>
 
     <!-- You can add more fields as needed -->
 

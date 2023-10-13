@@ -152,6 +152,10 @@
     <Content Include="Views\Pdf\Upload.cshtml" />
     <Content Include="Views\Pdf\PdfList.cshtml" />
     <Content Include="Views\Student\AcademicData.cshtml" />
+    <Content Include="Views\Pdf\Non_Academic.cshtml" />
+    <Content Include="Views\Home\Notice.cshtml" />
+    <Content Include="Views\Student\Result.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

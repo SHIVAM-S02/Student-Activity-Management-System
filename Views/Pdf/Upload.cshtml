@@ -41,15 +41,27 @@
     @Html.AntiForgeryToken()
 
     <div class="form-group">
-        @Html.Label("File Name")
-        @Html.TextBox("FileName", null, new { type = "text" })
-        @Html.ValidationMessage("FileName")
+        @Html.Label("Degree")
+        @Html.TextBox("Degree", null, new { type = "text" })
+        @Html.ValidationMessage("Degree")
     </div>
 
     <div class="form-group">
-        @Html.Label("Marks")
-        @Html.TextBox("Marks", null, new { type = "text" })
-        @Html.ValidationMessage("Marks")
+        @Html.Label("Board")
+        @Html.TextBox("Board", null, new { type = "text" })
+        @Html.ValidationMessage("Board")
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Percentage")
+        @Html.TextBox("Percentage", null, new { type = "text" })
+        @Html.ValidationMessage("Percentage")
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Year_of_Passing")
+        @Html.TextBox("Year_of_Passing", null, new { type = "text" })
+        @Html.ValidationMessage("Year_of_Passing")
     </div>
 
     <div class="form-group">

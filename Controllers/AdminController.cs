@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Web.Mvc;
 using System.Configuration;
 using Student_Activity_Management_System.Models;
-using System;
 
 namespace Student_Activity_Management_System.Controllers
 {

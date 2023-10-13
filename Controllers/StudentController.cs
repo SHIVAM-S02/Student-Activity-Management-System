@@ -364,5 +364,10 @@ namespace Student_Activity_Management_System.Controllers
             return View();
         }
 
+        public ActionResult Result()
+        {
+            return View();
+        }
+
     }
 }

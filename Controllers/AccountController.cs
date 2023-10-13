@@ -7,15 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-
-using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
 using Student_Activity_Management_System.Models;
-using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using System.Web.Security;
+
 
 namespace Student_Activity_Management_System.Controllers
 {
