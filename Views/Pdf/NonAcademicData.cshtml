@@ -1,0 +1,55 @@
+﻿@model List<Student_Activity_Management_System.Models.NonAcademicInfo>
+
+@{
+    ViewBag.Title = "Non-Academic Data";
+}
+
+<h2>Non-Academic Data</h2>
+
+<table class="table">
+    <tr>
+        <th>Year</th>
+        <th>Category</th>
+        <th>Activity</th>
+        <th>Actions</th> <!-- New column for actions -->
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Year</td>
+            <td>@item.Category</td>
+            <td>@item.Activity</td>
+            <td>
+
+                <a href="@Url.Action("ViewCertificate", "Pdf", new { certificatePath = item.CertificatePath })" target="_blank">View PDF</a>
+                <a href="@Url.Action("DownloadCertificate", "Pdf", new { certificatePath = item.CertificatePath })">Download PDF</a>
+
+
+                @using (Html.BeginForm("DeleteNonAcademicInfo", "Pdf", FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this data?');" }))
+                {
+                    @Html.Hidden("id", item.ID) <!-- Add this line to generate a hidden field for the ID -->
+                    <button type="submit">Delete</button>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+
+@*
+@foreach (var info in Model)
+{
+    <div>
+        <p>Year: @info.Year</p>
+        <p>Category: @info.Category</p>
+        <p>Activity: @info.Activity</p>
+        @if (!string.IsNullOrEmpty(info.CertificatePath))
+        {
+            <p>
+                <a href="@Url.Action("ViewCertificate", "Pdf", new { certificatePath = info.CertificatePath })">View Certificate</a>
+                <a href="@Url.Action("DownloadCertificate", "Pdf", new { certificatePath = info.CertificatePath })">Download Certificate</a>
+            </p>
+        }
+    </div>
+}
+*@

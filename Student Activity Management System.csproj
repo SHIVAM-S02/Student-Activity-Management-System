@@ -119,6 +119,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\NonAcademicInfo.cs" />
     <Compile Include="Models\PfdFile.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,10 +153,11 @@
     <Content Include="Views\Pdf\Upload.cshtml" />
     <Content Include="Views\Pdf\PdfList.cshtml" />
     <Content Include="Views\Student\AcademicData.cshtml" />
-    <Content Include="Views\Pdf\Non_Academic.cshtml" />
     <Content Include="Views\Home\Notice.cshtml" />
     <Content Include="Views\Student\Result.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Pdf\Submit.cshtml" />
+    <Content Include="Views\Pdf\NonAcademicData.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
