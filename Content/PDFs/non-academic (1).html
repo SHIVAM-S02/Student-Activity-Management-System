@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Non-Academic Information</title>
+    <style>
+        *
+        {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label, select, input[type="file"] {
+            display: block;
+            margin: 10px 0;
+        }
+text{
+    display:inline;
+    width: 350px;
+}
+{
+    size: 50px;
+}
+        select, input[type="file"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        select {
+            background-color: #f7f7f7;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Non-Academic Information</h1>
+    <form>
+
+
+        <label for="year">Year:</label>
+        <select id="year" name="year">
+            <option value="FE">2021</option>
+            <option value="SE">2022</option>
+            <option value="TE">2023</option>
+            <option value="BE">2024</option>
+        </select> 
+
+        <label for="category">Select Category:</label>
+        <select id="category" name="category">
+            <option value="extra_curricular">Extra-Curricular</option>
+            <option value="co_curricular">Co-Curricular</option>
+        </select>
+
+        <label for="activity">Select Activity:</label>
+        <select id="activity" name="activity">
+            <!-- Options will be added dynamically using JavaScript -->
+        </select>
+
+        <label for="certificate">Upload Certificate:</label>
+        <input type="file" id="certificate" name="certificate">
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        // Get references to the category and activity dropdowns
+        const categoryDropdown = document.getElementById("category");
+        const activityDropdown = document.getElementById("activity");
+
+        // Define options for each category
+        const options = {
+            extra_curricular: ["Sports", "Music", "Literature"],
+            co_curricular: ["Technack", "Colloseum", "Other"]
+        };
+
+        // Function to populate the activity dropdown based on the selected category
+        function populateActivityDropdown() {
+            const selectedCategory = categoryDropdown.value;
+            const activityOptions = options[selectedCategory] || [];
+            
+            // Clear existing options
+            activityDropdown.innerHTML = "";
+            
+            // Add new options
+            activityOptions.forEach(option => {
+                const optionElement = document.createElement("option");
+                optionElement.value = option;
+                optionElement.textContent = option;
+                activityDropdown.appendChild(optionElement);
+            });
+        }
+
+        // Initialize the activity dropdown based on the initial category selection
+        populateActivityDropdown();
+
+        // Add an event listener to the category dropdown to update the activity options
+        categoryDropdown.addEventListener("change", populateActivityDropdown);
+    </script>
+</body>
+</html>
