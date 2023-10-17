@@ -99,7 +99,7 @@ public class PdfController : Controller
     }
 
 
-public ActionResult PdfList()
+    public ActionResult PdfList()
     {
         // Fetch the list of PDF files from your database or repository
         List<PdfFile> pdfFiles = GetPDFFilesFromDatabase();
@@ -132,10 +132,10 @@ public ActionResult PdfList()
                                 FileName = reader["FileName"].ToString(),
                                 FileData = (byte[])reader["FileData"],
                                 Degree = reader["Degree"].ToString(),
-                                Board = reader["Board"].ToString()
-                                /*Percentage = reader.IsDBNull(reader.GetOrdinal("Percentage")) ? 0.0 : (double)reader["Percentage"],
-                                Year_of_Passing = reader["Year_of_Passing"].ToString()*/
-                               
+                                Board = reader["Board"].ToString(),
+                                Percentage = reader.IsDBNull(reader.GetOrdinal("Percentage")) ? 0.0 : (double)reader["Percentage"],
+                                Year_of_Passing = reader["Year_of_Passing"].ToString()
+
 
                             };
                             pdfFiles.Add(pdfFile);
@@ -215,9 +215,9 @@ public ActionResult PdfList()
                                 FileName = reader["FileName"].ToString(),
                                 FileData = (byte[])reader["FileData"],
                                 Degree = reader["Degree"].ToString(),
-                                Board = reader["Board"].ToString()
-                               /* Percentage = (double)reader["Percentage"],
-                                Year_of_Passing = reader["Year_of_Passing"].ToString()*/
+                                Board = reader["Board"].ToString(),
+                                Percentage = (double)reader["Percentage"],
+                                Year_of_Passing = reader["Year_of_Passing"].ToString()
                             };
                         }
                     }
@@ -251,9 +251,9 @@ public ActionResult PdfList()
             if (certificate != null && certificate.ContentLength > 0)
             {
                 string fileName = Path.GetFileName(certificate.FileName);
-                string filePath = Path.Combine(Server.MapPath("~/Content/PDFs"), fileName);
+                string filePath = Path.Combine(Server.MapPath("~/Content/PDFs/NonAcademicData"), fileName);
                 certificate.SaveAs(filePath);
-                certificatePath = "~/Content/PDFs/" + fileName; // Corrected path
+                certificatePath = "~/Content/PDFs/NonAcademicData/" + fileName; // Corrected path
             }
 
             int userId = Convert.ToInt32(Session["UserId"]);
