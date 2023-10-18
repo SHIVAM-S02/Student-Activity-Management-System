@@ -1,0 +1,38 @@
+﻿@model Student_Activity_Management_System.Models.EducationalDetail
+
+@using (Html.BeginForm("EducationalDetails", "Academic", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(model => model.YearOfPassing)
+        @Html.EditorFor(model => model.YearOfPassing)
+        @Html.ValidationMessageFor(model => model.YearOfPassing)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Degree)
+        @Html.EditorFor(model => model.Degree)
+        @Html.ValidationMessageFor(model => model.Degree)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Board)
+        @Html.EditorFor(model => model.Board)
+        @Html.ValidationMessageFor(model => model.Board)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Percentage)
+        @Html.EditorFor(model => model.Percentage)
+        @Html.ValidationMessageFor(model => model.Percentage)
+    </div>
+
+    <div>
+        <input type="file" name="FileUpload" />
+    </div>
+
+    <div>
+        <input type="submit" value="Upload" />
+    </div>
+}

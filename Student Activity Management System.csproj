@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AcademicController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -119,8 +120,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AcademicDetails.cs" />
+    <Compile Include="Models\EducationalDetail.cs" />
     <Compile Include="Models\NonAcademicInfo.cs" />
-    <Compile Include="Models\PfdFile.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -150,14 +152,13 @@
     <Content Include="Views\Student\CreateStudent.cshtml" />
     <Content Include="Views\Student\EditStudent.cshtml" />
     <Content Include="Views\Student\StudentProfile.cshtml" />
-    <Content Include="Views\Pdf\Upload.cshtml" />
-    <Content Include="Views\Pdf\PdfList.cshtml" />
-    <Content Include="Views\Student\AcademicData.cshtml" />
     <Content Include="Views\Home\Notice.cshtml" />
-    <Content Include="Views\Student\Result.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Pdf\Submit.cshtml" />
     <Content Include="Views\Pdf\NonAcademicData.cshtml" />
+    <Content Include="Views\Academic\EducationalDetails.cshtml" />
+    <Content Include="Views\Academic\ViewEducationalDetails.cshtml" />
+    <Content Include="Views\Academic\AddAcademicDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -167,6 +168,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\PDFs\AcademicData\" />
+    <Folder Include="Content\PDFs\EducationalData\" />
     <Folder Include="Content\PDFs\NonAcademicData\" />
   </ItemGroup>
   <PropertyGroup>

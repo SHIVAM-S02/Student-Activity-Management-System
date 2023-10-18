@@ -17,22 +17,27 @@
             color: #007bff;
         }*/
 
-          
+
     </style>
 
-</head>
+</head>          
 <body>
     <div class="box-container">
 
-        <a href="@Url.Action("PdfList", "Pdf")" class="box">
+
+        <a href="@Url.Action("EducationalDetails", "Academic")" class="box">
+            <h3>Educational Details</h3>
+        </a>
+
+        <a href="@Url.Action("AddAcademicDetails", "Academic")" class="box">
             <h3>Academic Performance</h3>
         </a>
+
         <a href="@Url.Action("Submit", "pdf")" class="box">
             <h3>Non-Academic Performance</h3>
         </a>
-        <a href="@Url.Action("NonAcademicData", "Student")" class="box">
-            <h3>IA Result</h3>
-        </a>
+
+
     </div>
 
 </body>

@@ -5,9 +5,8 @@
 }
 
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">*@
 </head>
-
 
 <a href="@Url.Action("NonAcademicData", "Pdf")" class="box">
     <h3>View Data</h3>
@@ -26,16 +25,16 @@
             @Html.LabelFor(model => model.Year, "Year:")
             @Html.DropDownListFor(model => model.Year, new SelectList(new List<SelectListItem>
             {
-                new SelectListItem { Text = "2021", Value = "2021" },
-                new SelectListItem { Text = "2022", Value = "2022" },
-                new SelectListItem { Text = "2023", Value = "2023" },
-                new SelectListItem { Text = "2024", Value = "2024" },
-                new SelectListItem { Text = "2025", Value = "2025" },
-                new SelectListItem { Text = "2026", Value = "2026" },
-                new SelectListItem { Text = "2027", Value = "2027" },
-                new SelectListItem { Text = "2028", Value = "2028" },
-                new SelectListItem { Text = "2029", Value = "2029" },
-                new SelectListItem { Text = "2030", Value = "2030" }
+                new SelectListItem { Text = "2020-2021", Value = "2020-2021" },
+                new SelectListItem { Text = "2021-2022", Value = "2021-2022" },
+                new SelectListItem { Text = "2022-2023", Value = "2022-2023" },
+                new SelectListItem { Text = "2023-2024", Value = "2023-2024" },
+                new SelectListItem { Text = "2024-2025", Value = "2024-2025" },
+                new SelectListItem { Text = "2025-2026", Value = "2025-2026" },
+                new SelectListItem { Text = "2026-2027", Value = "2026-2027" },
+                new SelectListItem { Text = "2027-2028", Value = "2027-2028" },
+                new SelectListItem { Text = "2028-2029", Value = "2028-2029" },
+                new SelectListItem { Text = "2029-2030", Value = "2029-2030" }
             }, "Value", "Text"), new { @class = "form-control" })
         </div>
 
@@ -44,20 +43,14 @@
             @Html.DropDownListFor(model => model.Category, new SelectList(new List<SelectListItem>
             {
                 new SelectListItem { Text = "Extra-Curricular", Value = "extra_curricular" },
-                new SelectListItem { Text = "Co-Curricular", Value = "co_curricular" }
-            }, "Value", "Text"), new { @class = "form-control" })
+                new SelectListItem { Text = "Co-Curricular", Value = "co_curricular" },
+            }, "Value", "Text"), new { @class = "form-control", id = "category" })
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Activity, "Activity:")
-            @Html.DropDownListFor(model => model.Activity, new SelectList(new List<SelectListItem>
-            {
-                new SelectListItem { Text = "Sports", Value = "Sports" },
-                new SelectListItem { Text = "Music", Value = "Music" },
-                new SelectListItem { Text = "Dance", Value = "Dance" },
-                new SelectListItem { Text = "Inovax", Value = "Inovax" }
-            }, "Value", "Text"), new { @class = "form-control" })
-
+            <select name="Activity" id="activity" class="form-control"></select> <!-- Create an empty "Activity" dropdown -->
+            <input type="text" name="OtherActivity" id="otherActivity" class="form-control" style="display: none;" placeholder="Enter other activity">
         </div>
 
         <div class="form-group">
@@ -69,6 +62,49 @@
 
     }
 
+    <script>
+        // Get references to the category and activity dropdowns
+        const categoryDropdown = document.getElementById("category");
+        const activityDropdown = document.getElementById("activity");
+        const otherActivityInput = document.getElementById("otherActivity");
+
+        // Define options for each category
+        const options = {
+            extra_curricular: ["Sports", "Music", "Literature", "Other"],
+            co_curricular: ["Technack", "Colloseum", "Other"],
+            other: [] // Empty options for "Other" category
+        };
+
+        // Function to populate the activity dropdown based on the selected category
+        function populateActivityDropdown() {
+            const selectedCategory = categoryDropdown.value;
+            const activityOptions = options[selectedCategory] || [];
+
+            // Clear existing options
+            activityDropdown.innerHTML = "";
+
+            // Add new options
+            activityOptions.forEach(option => {
+                const optionElement = document.createElement("option");
+                optionElement.value = option;
+                optionElement.textContent = option;
+                activityDropdown.appendChild(optionElement);
+            });
+
+            // Show/hide the "Other" text input based on selection
+            if (selectedCategory === "other") {
+                otherActivityInput.style.display = "block";
+            } else {
+                otherActivityInput.style.display = "none";
+            }
+        }
+
+        // Initialize the activity dropdown based on the initial category selection
+        populateActivityDropdown();
+
+        // Add an event listener to the category dropdown to update the activity options
+        categoryDropdown.addEventListener("change", populateActivityDropdown);
+    </script>
 
 </body>
 

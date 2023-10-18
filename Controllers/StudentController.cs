@@ -359,15 +359,6 @@ namespace Student_Activity_Management_System.Controllers
             return null; // Return null if the profile is not found or an error occurs
         }
 
-        public ActionResult AcademicData()
-        {
-            return View();
-        }
-
-        public ActionResult Result()
-        {
-            return View();
-        }
 
     }
 }
