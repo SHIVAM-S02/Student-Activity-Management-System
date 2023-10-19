@@ -159,6 +159,7 @@
     <Content Include="Views\Academic\EducationalDetails.cshtml" />
     <Content Include="Views\Academic\ViewEducationalDetails.cshtml" />
     <Content Include="Views\Academic\AddAcademicDetails.cshtml" />
+    <Content Include="Views\Academic\ViewAcademicDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

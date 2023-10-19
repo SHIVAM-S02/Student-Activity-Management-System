@@ -203,6 +203,8 @@ namespace Student_Activity_Management_System.Controllers
 
                 if (UploadAcademicDetails(userId, academicDetails.Year, academicDetails.Semester, academicDetails.CGPA, academicDetails.ClosedBacklog, academicDetails.LiveBacklog, FileUploadPath))
                 {
+                    ViewBag.Notification = "Academic data has been successfully added.";
+
                     return RedirectToAction("ViewAcademicDetails");
                 }
                 else
@@ -243,6 +245,101 @@ namespace Student_Activity_Management_System.Controllers
                 // Handle exceptions appropriately, e.g., log the error
                 return false; // Upload failed
             }
+        }
+
+
+        public ActionResult ViewAcademicDetails()
+        {
+            int userId = Convert.ToInt32(Session["UserId"]);
+            List<AcademicDetails> academicDetailsList = GetAcademicDetails(userId);
+
+            return View(academicDetailsList);
+        }
+
+        private List<AcademicDetails> GetAcademicDetails(int userId)
+        {
+            List<AcademicDetails> academicDetailsList = new List<AcademicDetails>();
+
+            try
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand("GetAcademicDetailsByUserId", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@User_ID", userId);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                AcademicDetails academicDetails = new AcademicDetails
+                                {
+                                    ID = Convert.ToInt32(reader["ID"]),
+                                    Year = Convert.ToInt32(reader["Year"]),
+                                    Semester = reader["Semester"].ToString(),
+                                    CGPA = Convert.ToDouble(reader["CGPA"]),
+                                    ClosedBacklog = Convert.ToInt32(reader["ClosedBacklog"]),
+                                    LiveBacklog = Convert.ToInt32(reader["LiveBacklog"]),
+                                    FileUploadPath = reader["FileUploadPath"].ToString()
+                                };
+                                academicDetailsList.Add(academicDetails);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions appropriately, e.g., log the error
+            }
+
+            return academicDetailsList;
+        }
+
+
+        [HttpPost]
+        public ActionResult DeleteEducationalDetails(int id)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new SqlCommand("DeleteAcademicDetail", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Add the ID parameter for the stored procedure
+                        command.Parameters.Add("@ID", SqlDbType.Int).Value = id;
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions as needed, e.g., logging or displaying an error message
+                ViewBag.ErrorMessage = "An error occurred while deleting educational detail.";
+            }
+
+            // After successful deletion or in case of an error, redirect to the "ViewEducationalDetails" action to refresh the data
+            return RedirectToAction("ViewAcademicDetails");
+        }
+
+        public FileResult ViewCertificates(string FileUploadPath)
+        {
+            string filePath = Server.MapPath(FileUploadPath);
+            return File(filePath, "application/pdf");
+        }
+
+        public FileResult DownloadCertificates(string FileUploadPath)
+        {
+            string filePath = Server.MapPath(FileUploadPath);
+            string fileName = Path.GetFileName(filePath);
+            return File(filePath, "application/pdf", fileName);
         }
 
     }

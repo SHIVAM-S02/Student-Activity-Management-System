@@ -1,5 +1,18 @@
 ﻿@model Student_Activity_Management_System.Models.EducationalDetail
 
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+    </style>
+
+</head>
+
+<a href="@Url.Action("ViewEducationalDetails", "Academic")" class="box">
+    <h3>View Data</h3>
+</a>
+
 @using (Html.BeginForm("EducationalDetails", "Academic", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)

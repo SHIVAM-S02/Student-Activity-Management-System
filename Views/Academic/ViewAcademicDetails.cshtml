@@ -1,0 +1,40 @@
+﻿@model List<Student_Activity_Management_System.Models.AcademicDetails>
+
+<h2>Academic Details</h2>
+
+<a>
+    @if (ViewBag.Notification != null)
+    {
+        <div class="alert alert-success">@ViewBag.Notification</div>
+    }
+</a>
+
+<table class="table">
+    <tr>
+        <th>Year</th>
+        <th>Semester</th>
+        <th>CGPA</th>
+        <th>Closed Backlog</th>
+        <th>Live Backlog</th>
+        <th>Marksheet</th>
+    </tr>
+    @foreach (var academicDetail in Model)
+    {
+        <tr>
+            <td>@academicDetail.Year</td>
+            <td>@academicDetail.Semester</td>
+            <td>@academicDetail.CGPA</td>
+            <td>@academicDetail.ClosedBacklog</td>
+            <td>@academicDetail.LiveBacklog</td>
+            <td>
+                <a href="@Url.Action("ViewCertificates", "Academic", new { FileUploadPath = academicDetail.FileUploadPath })" target="_blank">View Marksheet</a>
+                <a href="@Url.Action("DownloadCertificates", "Academic", new { FileUploadPath = academicDetail.FileUploadPath })">Download Marksheet</a>
+                @using (Html.BeginForm("DeleteEducationalDetails", "Academic", new { id = academicDetail.ID }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this data?');" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn-link">Delete</button>
+                }
+            </td>
+        </tr>
+    }
+</table>
