@@ -12,9 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.User_ID)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.First_Name)
         </th>
         <th>
@@ -30,17 +27,16 @@
             @Html.DisplayNameFor(model => model.Password)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Batch_ID)
+            Operations
         </th>
-        <th></th>
+        <th>
+            Actions
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User_ID)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.First_Name)
             </td>
@@ -57,26 +53,12 @@
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Batch_ID)
-            </td>
-            <td>
                 @Html.ActionLink("Edit Student", "EditStudent", "Student", new { id = item.User_ID }, null)
                 @Html.ActionLink("Details", "Details", new { id = item.User_ID }, null) |
                 @Html.ActionLink("Delete", "DeleteStudent", new { id = item.User_ID }, new { onclick = "return confirm('Are you sure you want to delete this admin?');" })
             </td>
-        </tr>
-        <tr>
-            <td colspan="8">
-                <!-- Details section for the user -->
-                <div id="details-@item.User_ID" style="display: none;">
-                    <h4>User Details</h4>
-                    <p><strong>User ID:</strong> @item.User_ID</p>
-                    <p><strong>First Name:</strong> @item.First_Name</p>
-                    <p><strong>Last Name:</strong> @item.Last_Name</p>
-                    <p><strong>Gender:</strong> @item.Gender</p>
-                    <p><strong>Email:</strong> @item.Email</p>
-                    <!-- Add more details as needed -->
-                </div>
+            <td>
+                @Html.ActionLink("Student Profile", "StudentProfiles", "Student", new { id = item.User_ID }, null)
             </td>
         </tr>
     }

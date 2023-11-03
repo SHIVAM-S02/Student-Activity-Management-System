@@ -322,6 +322,25 @@ namespace Student_Activity_Management_System.Controllers
             }
         }
 
+
+        public ActionResult StudentProfiles(int id)
+        {
+            // Retrieve the student's profile based on the provided User_ID
+            User studentProfile = GetStudentProfile(id);
+
+            if (studentProfile != null)
+            {
+                // Create a view model or pass the user model directly
+                return View(studentProfile);
+            }
+            else
+            {
+                // Handle the case where the student profile was not found
+                return RedirectToAction("NotFound", "Error"); // You can create an error handling action for this
+            }
+        }
+
+
         // Define the GetStudentProfile method within the StudentController
         private User GetStudentProfile(int userId)
         {

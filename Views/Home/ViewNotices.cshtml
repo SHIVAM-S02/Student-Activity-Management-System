@@ -1,0 +1,67 @@
+﻿@model List<Student_Activity_Management_System.Models.Notice>
+
+@{
+    ViewBag.Title = "View Notices";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Container holding the image and the text */
+        .container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        /* Centered text */
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        table {
+            background-color: rgba(255, 255, 255, 0.6); /* Background color with transparency */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            width: 110%; /* Adjust the width as needed */
+            margin: 0 auto; /* Center the table horizontally */
+            color: green; /* Text color */
+        }
+
+            table th {
+                color: green; /* Header text color */
+            }
+
+        /* Your additional CSS for the table */
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="aatif" src="https://media.istockphoto.com/id/144956493/photo/a-brown-cork-bulletin-board-with-a-wooden-frame.jpg?s=612x612&w=0&k=20&c=s5BS0aq5XVmEjiT1R79gIpM2XSTsCDz_wkZWnmW7X2s=" alt="Snow" style="width:100%;">
+        <div class="centered">
+            <h1>Notices</h1>
+            <table class="table">
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Date Published</th>
+                </tr>
+                @foreach (var notice in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(notice.Title, "ViewNotice", "Notice", new { id = notice.ID }, null)</td>
+                        <td>@Html.Raw(notice.Content)</td>
+                        <td>@notice.DatePublished.ToString("MMMM dd, yyyy HH:mm:ss tt")</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</body>
+</html>

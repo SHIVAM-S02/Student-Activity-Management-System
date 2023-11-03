@@ -3,5 +3,27 @@
     ViewBag.Title = "Dashboard";
 }
 
-<h2>Dashboard</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+    <link rel="stylesheet" href="~/Content/Home.css" />
+    <link rel="stylesheet" href="~/Content/Dashboard.css" />
+
+</head>
+<body>
+
+    <div class="box-container">
+
+        <a href="@Url.Action("AddNotice","Home")" class="box">
+            <h2>Notice</h2>
+        </a>
+
+        <a href="@Url.Action("Batches","Student")" class="box">
+            <h2>Student</h2>
+        </a>
+
+    </div>
+
+</body>
+</html>

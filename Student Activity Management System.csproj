@@ -123,6 +123,7 @@
     <Compile Include="Models\AcademicDetails.cs" />
     <Compile Include="Models\EducationalDetail.cs" />
     <Compile Include="Models\NonAcademicInfo.cs" />
+    <Compile Include="Models\Notice.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -160,6 +161,8 @@
     <Content Include="Views\Academic\ViewEducationalDetails.cshtml" />
     <Content Include="Views\Academic\AddAcademicDetails.cshtml" />
     <Content Include="Views\Academic\ViewAcademicDetails.cshtml" />
+    <Content Include="Views\Home\AddNotice.cshtml" />
+    <Content Include="Views\Home\ViewNotices.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
