@@ -4,7 +4,7 @@
     ViewBag.Title = "Batch_2024";
 }
 
-<h2>GetUserByBatchID</h2>
+<h2>Batch_2024</h2>
 
 <p>
     @Html.ActionLink("Create Student", "CreateStudent", "Student")
@@ -54,11 +54,10 @@
             </td>
             <td>
                 @Html.ActionLink("Edit Student", "EditStudent", "Student", new { id = item.User_ID }, null)
-                @Html.ActionLink("Details", "Details", new { id = item.User_ID }, null) |
                 @Html.ActionLink("Delete", "DeleteStudent", new { id = item.User_ID }, new { onclick = "return confirm('Are you sure you want to delete this admin?');" })
             </td>
             <td>
-                @Html.ActionLink("Student Profile", "StudentProfiles", "Student", new { id = item.User_ID }, null)
+                @Html.ActionLink("Student Profile", "StudentProfile", "Student", new { id = item.User_ID }, null)
             </td>
         </tr>
     }
